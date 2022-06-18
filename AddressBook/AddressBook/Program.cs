@@ -14,6 +14,7 @@ namespace AddressBook
                 Console.WriteLine("2: Close Connection");
                 Console.WriteLine("3: Add Contact in Address Book");
                 Console.WriteLine("4: Update Contact");
+                Console.WriteLine("5: Remove Contact");
                 Console.WriteLine("0: Exit");
                 input = int.Parse(Console.ReadLine());
                 switch (input)
@@ -83,6 +84,13 @@ namespace AddressBook
                         addressbook.EmailID = Email;
                         details.UpdateContact(addressbook);
                         Console.WriteLine("Contact is Updated");
+                        break;
+                    case 5:
+                        Addressbook delete = new Addressbook();
+                        Console.WriteLine("Enter a ID For Delete The Contact");
+                        int id = int.Parse(Console.ReadLine()); 
+                        delete.ID = id;
+                        details.RemoveContact(delete);
                         break;
                     case 0:
                         Console.WriteLine("Exit");

@@ -112,5 +112,31 @@ namespace AddressBook
                 throw new AddressException(AddressException.ExceptionType.Contact_Not_Updated, "Contact not updated");
             }
         }
+        public bool RemoveContact(Addressbook address)
+        {
+            try
+            {
+                using (sqlConnection)
+                {
+                    SqlCommand command = new SqlCommand("RemoveContactFromAddressBook", sqlConnection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", address.ID);
+                    sqlConnection.Open();
+                    var result = command.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    if (result != 0)
+                    {
+                        Console.WriteLine("Contact is Deleted");
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return false;
+        }
     }
 }

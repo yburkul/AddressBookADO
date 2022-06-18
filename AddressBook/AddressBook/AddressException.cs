@@ -8,7 +8,6 @@ namespace AddressBook
 {
     public class AddressException : Exception
     {
-
         ExceptionType exceptionType;
         public enum ExceptionType
         {
