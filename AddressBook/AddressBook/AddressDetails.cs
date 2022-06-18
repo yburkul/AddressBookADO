@@ -80,5 +80,37 @@ namespace AddressBook
                 throw new AddressException(AddressException.ExceptionType.Contact_Not_Add, "Contact are not added");
             }
         }
+        public bool UpdateContact(Addressbook address)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("EditContact", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", address.ID);
+                    command.Parameters.AddWithValue("@FirstName", address.FirstName);
+                    command.Parameters.AddWithValue("@LastName", address.LastName);
+                    command.Parameters.AddWithValue("@Address", address.Address);
+                    command.Parameters.AddWithValue("@City", address.City);
+                    command.Parameters.AddWithValue("@State", address.State);
+                    command.Parameters.AddWithValue("@ZipCode", address.ZipCode);
+                    command.Parameters.AddWithValue("@PhoneNumber", address.PhoneNumber);
+                    command.Parameters.AddWithValue("@EmailID", address.EmailID);
+                    connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    connection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                throw new AddressException(AddressException.ExceptionType.Contact_Not_Updated, "Contact not updated");
+            }
+        }
     }
 }

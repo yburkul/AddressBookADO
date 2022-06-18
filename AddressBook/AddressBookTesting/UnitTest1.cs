@@ -14,7 +14,7 @@ namespace AddressBookTesting
             book = new Addressbook();
         }
         /// <summary>
-        /// TC - Add The Contact in Address Book
+        /// TC 1 - Add The Contact in Address Book
         /// </summary>
         [Test]
         public void Add_AddressBookContact_InDataBase()
@@ -29,6 +29,25 @@ namespace AddressBookTesting
             book.PhoneNumber = 7705332108;
             book.EmailID = "sachin113@gmail.com";
             bool result = address.AddContact(book);
+            Assert.AreEqual(expected, result);
+        }
+        /// <summary>
+        /// TC 2- Update the Address Book Contact
+        /// </summary>
+        [Test]
+        public void Update_AddressBook_ContactInDB()
+        {
+            bool expected = true;
+            book.ID = 5;
+            book.FirstName = "Ritesh";
+            book.LastName = "Shelke";
+            book.Address = "Akola";
+            book.City = "Amravati";
+            book.State = "MH";
+            book.ZipCode = 340045;
+            book.PhoneNumber = 8805320078;
+            book.EmailID = "shelke123@gmail.com";
+            bool result = address.UpdateContact(book);
             Assert.AreEqual(expected, result);
         }
     }

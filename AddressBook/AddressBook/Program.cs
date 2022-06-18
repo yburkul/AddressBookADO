@@ -13,6 +13,7 @@ namespace AddressBook
                 Console.WriteLine("1: Establish Connection");
                 Console.WriteLine("2: Close Connection");
                 Console.WriteLine("3: Add Contact in Address Book");
+                Console.WriteLine("4: Update Contact");
                 Console.WriteLine("0: Exit");
                 input = int.Parse(Console.ReadLine());
                 switch (input)
@@ -50,6 +51,38 @@ namespace AddressBook
                         string email = Console.ReadLine();
                         addressBook.EmailID = email;
                         details.AddContact(addressBook);
+                        break;
+                    case 4:
+                        Addressbook addressbook = new Addressbook();
+                        Console.WriteLine("Enter a ID for Update Contact");
+                        int Id = int.Parse(Console.ReadLine());
+                        addressbook.ID = Id;
+                        Console.WriteLine("Enter a First Name");
+                        string firstname = Console.ReadLine();
+                        addressbook.FirstName = firstname;
+                        Console.WriteLine("Enter Last Name");
+                        string lastname = Console.ReadLine();
+                        addressbook.LastName = lastname;
+                        Console.WriteLine("Enter Address");
+                        string address = Console.ReadLine();
+                        addressbook.Address = address;
+                        Console.WriteLine("Enter City");
+                        string city = Console.ReadLine();
+                        addressbook.City = city;
+                        Console.WriteLine("Enter State");
+                        string State = Console.ReadLine();
+                        addressbook.State = State;
+                        Console.WriteLine("Enter Zip");
+                        double zip = Convert.ToInt64(Console.ReadLine());
+                        addressbook.ZipCode = zip;
+                        Console.WriteLine("Enter PhoneNumber");
+                        double Phone = Convert.ToInt64(Console.ReadLine());
+                        addressbook.PhoneNumber = Phone;
+                        Console.WriteLine("Enter Email");
+                        string Email = Console.ReadLine();
+                        addressbook.EmailID = Email;
+                        details.UpdateContact(addressbook);
+                        Console.WriteLine("Contact is Updated");
                         break;
                     case 0:
                         Console.WriteLine("Exit");
