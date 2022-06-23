@@ -15,6 +15,7 @@ namespace AddressBook
                 Console.WriteLine("3: Add Contact in Address Book");
                 Console.WriteLine("4: Update Contact");
                 Console.WriteLine("5: Remove Contact");
+                Console.WriteLine("6: Get All Address Book Contact");
                 Console.WriteLine("0: Exit");
                 input = int.Parse(Console.ReadLine());
                 switch (input)
@@ -91,6 +92,9 @@ namespace AddressBook
                         int id = int.Parse(Console.ReadLine()); 
                         delete.ID = id;
                         details.RemoveContact(delete);
+                        break;
+                    case 6:
+                        AddressDetails.GetAddressBookDetails();
                         break;
                     case 0:
                         Console.WriteLine("Exit");

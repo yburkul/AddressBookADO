@@ -138,5 +138,42 @@ namespace AddressBook
             }
             return false;
         }
+        public static List<Addressbook> GetAddressBookDetails()
+        {
+            List<Addressbook> list = new List<Addressbook>();
+            Addressbook address = new Addressbook();
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            using (sqlConnection)
+            {
+                SqlCommand cmd = new SqlCommand("GetAllAddressBookContact", sqlConnection);
+                sqlConnection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        address.ID = reader.GetInt32(0);
+                        address.FirstName = reader.GetString(1);
+                        address.LastName = reader.GetString(2);
+                        address.Address = reader.GetString(3);
+                        address.City = reader.GetString(4);
+                        address.State = reader.GetString(5);
+                        address.ZipCode = reader.GetInt64(6);
+                        address.PhoneNumber = reader.GetInt64(7);
+                        address.EmailID = reader.GetString(8);
+                        list.Add(address);
+                        Console.WriteLine(address.ID + "," + address.FirstName + "," + address.LastName + "," + address.Address + "," + address.City + "," + address.State + ","
+                           + address.ZipCode + "," + address.PhoneNumber + "," + address.EmailID);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No Data Found");
+                }
+                sqlConnection.Close();
+
+            }
+            return list;
+        }
     }
 }
